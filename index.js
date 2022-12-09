@@ -1,6 +1,13 @@
 const express = require("express");
-
+const cors = require('cors')
 const app = express();
+
+app.use(cors({
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}))
 
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
@@ -25,6 +32,6 @@ io.on("connection", (socket) => {
   console.log(socket.id);
 });
 
-server.listen(3001, () => {
+server.listen(8001, () => {
   console.log("Server is running");
 });

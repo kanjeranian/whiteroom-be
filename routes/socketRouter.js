@@ -16,6 +16,27 @@ function socketRouter(io) {
     });
   });
 
+  router.get("/timer1start", (req, res) => {
+    io.emit("timer1start", "");
+    res.json({
+      message: "start",
+    });
+  });
+
+  router.get("/timer1minus", (req,res)=>{
+    io.emit("timer1minus", "");
+    res.json({
+      message: "minus"
+    })
+  })
+
+  router.get("/timer1stop", (req,res)=>{
+    io.emit("timer1stop", "");
+    res.json({
+      message: "stop"
+    })
+  })
+
   return {
     router,
   };
