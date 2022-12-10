@@ -1,0 +1,14 @@
+
+version: '3'
+services:
+  whiteroom-be:
+    build: .
+    volumes:
+      - .:/usr/src/app/
+      - dependencies:/usr/src/app/node_modules
+    working_dir: /usr/src/app
+    ports:
+      - 8001:8001
+    command: npm start
+volumes:
+  dependencies:
