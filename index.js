@@ -10,8 +10,8 @@ const io = require("socket.io")(server, {
 const socketRouter = require("./routes/socketRouter")(io).router;
 app.use(
   cors({
-    origin: "*",
-    preflightContinue: false
+    credentials: true,
+    origin: ["*"],
   })
 );
 
@@ -27,7 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.render("index");
+  // res.render("index");
+  res.send({love: "dog"})
 });
 
 server.listen(8001, () => {
