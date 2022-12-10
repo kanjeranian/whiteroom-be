@@ -1,4 +1,5 @@
 const express = require("express");
+var cors = require('cors')
 
 function socketRouter(io) {
   const router = express.Router();
@@ -17,21 +18,25 @@ function socketRouter(io) {
   });
 
   router.get("/timer1start", (req, res) => {
-    io.emit("timer1start", "");
+    console.log('start')
+    res.header("Access-Control-Allow-Origin", "*");
+    io.emit("timer1start", "start");
     res.json({
       message: "start",
     });
   });
 
-  router.get("/timer1minus", (req,res)=>{
-    io.emit("timer1minus", "");
+  router.get("/timer1minus", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    io.emit("timer1minus", "minus");
     res.json({
       message: "minus"
     })
   })
 
-  router.get("/timer1stop", (req,res)=>{
-    io.emit("timer1stop", "");
+  router.get("/timer1stop", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    io.emit("timer1stop", "stop");
     res.json({
       message: "stop"
     })
